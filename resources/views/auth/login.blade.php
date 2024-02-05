@@ -44,12 +44,12 @@
                                     <form class="user" method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group">
-                                            <input id="email" type="email"
-                                                class="form-control form-control-user @error('email') is-invalid @enderror"
-                                                name="email" value="{{ old('email') }}" placeholder="Email Address"
-                                                required autocomplete="email" autofocus>
+                                            <input id="username" type="text"
+                                                class="form-control form-control-user @error('username') is-invalid @enderror"
+                                                name="username" value="{{ old('username') }}" placeholder="Email Address"
+                                                required autocomplete="username" autofocus>
 
-                                            @error('email')
+                                            @error('username')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

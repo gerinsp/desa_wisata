@@ -35,15 +35,19 @@
 <body id="page-top">
     <div id="wrapper">
         <!-- Sidebar -->
-        @include('layouts/sidebar')
+        @include('layouts/admin/sidebar')
 
-        @include('layouts/navbar')
+        @include('layouts/admin/navbar')
 
         <main class="py-4">
             @yield('content')
         </main>
     </div>
-    @include('layouts/footer')
+    @include('layouts/admin/footer')
+
+    <script src="{{ asset('js/sweetalert2.js') }}"></script>
+
+    @yield('js')
 
 </body>
 

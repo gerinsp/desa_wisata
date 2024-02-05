@@ -9,5 +9,6 @@ class Desa extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
     protected $table = 'tbl_desa';
 }
