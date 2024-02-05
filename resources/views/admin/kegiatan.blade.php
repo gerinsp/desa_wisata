@@ -7,11 +7,11 @@
     </div>
 
     <!-- Content Row -->
-    <div class="card shadow mb-4" style="width: 50%">
+    <div class="card shadow mb-4" style="width: 100%">
         <!-- Card Header - Dropdown -->
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">
-                Data Fasilitas
+                Data Kegiatan
             </h6>
             <div class="dropdown no-arrow">
                 <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
@@ -27,17 +27,19 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nama Desa</th>
-                    <th scope="col">Fasilitas</th>
+                    <th scope="col">Tanggal</th>
+                    <th scope="col">Kegiatan</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($fasilitas as $value)
+                @foreach ($kegiatan as $value)
                     <tr>
                         <th scope="row">
-                            {{ ($fasilitas->currentpage() - 1) * $fasilitas->perpage() + $loop->index + 1 }}</th>
+                            {{ ($kegiatan->currentpage() - 1) * $kegiatan->perpage() + $loop->index + 1 }}</th>
                         <td>{{ ucwords(strtolower($value->desa->nama_desa)) }}</td>
-                        <td>{{ ucwords(strtolower($value->fasilitas)) }}</td>
+                        <td>{{ date('j F Y', strtotime($value->tanggal)) }}</td>
+                        <td>{{ ucwords(strtolower($value->kegiatan)) }}</td>
                         <td>
                             <a href="#" id="btn-edit" data-toggle="modal" data-target="#exampleModal" onclick="updateData('{{ $value->id }}')" href="#"><i class="fas fa-edit"></i></a>
                             <a href="#" id="btn-delete" class="border-0 bg-white" onclick="hapusData('{{ $value->id }}')"><i
@@ -47,7 +49,7 @@
                 @endforeach
                 </tbody>
             </table>
-            {{ $fasilitas->links() }}
+            {{ $kegiatan->links() }}
         </div>
     </div>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -63,13 +65,17 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Pilih Desa</label>
-                        <select class="form-select" id="id_desa" required>
+                        <select class="form-select" id="id_desa">
 
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Fasilitas</label>
-                        <input type="text" class="form-control" id="nama_fasilitas" aria-describedby="emailHelp" required>
+                        <label for="exampleInputEmail1">Tanggal</label>
+                        <input type="date" class="form-control" id="tanggal" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Kegiatan</label>
+                        <input type="text" class="form-control" id="kegiatan" aria-describedby="emailHelp">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -93,9 +99,10 @@
         function tambahData() {
             $('#exampleModalLabel').text('Tambah Data')
             $('#btn-submit').text('Simpan')
-            url = '{{ route('fasilitas.store') }}'
+            url = '{{ route('kegiatan.store') }}'
             method = 'POST'
-            $('#nama_fasilitas').val('')
+            $('#kegiatan').val('')
+            $('#tanggal').val('')
             selectDesa.innerHTML = '';
 
             //option value
@@ -109,18 +116,19 @@
         function updateData(id) {
             $('#exampleModalLabel').text('Edit Data')
             $('#btn-submit').text('Ubah')
-            url = `/admin/fasilitas/${id}`
+            url = `/admin/kegiatan/${id}`
             method = 'PUT'
 
             $.ajax({
-                url: `/admin/fasilitas/${id}`,
+                url: `/admin/kegiatan/${id}`,
                 method: 'GET',
                 headers: {
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 },
                 success: function (res) {
                     if (res.status == 'OK') {
-                        $('#nama_fasilitas').val(res.data.fasilitas)
+                        $('#tanggal').val(res.data.tanggal)
+                        $('#kegiatan').val(res.data.kegiatan)
                         selectDesa.innerHTML = '';
 
                         //option value
@@ -143,7 +151,7 @@
 
             if(konfirmasi) {
                 $.ajax({
-                    url: `/admin/fasilitas/${id}`,
+                    url: `/admin/kegiatan/${id}`,
                     method: 'DELETE',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
@@ -173,7 +181,8 @@
                 },
                 data: {
                     id_desa: $('#id_desa').val(),
-                    fasilitas: $('#nama_fasilitas').val()
+                    tanggal: $('#tanggal').val(),
+                    kegiatan: $('#kegiatan').val()
                 },
                 success: function (res) {
                     if (res.status == 'OK') {

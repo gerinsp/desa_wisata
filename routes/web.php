@@ -23,4 +23,5 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/home', [\App\Http\Controllers\admin\HomeController::class, 'index'])->name('home');
     Route::resource('desa', \App\Http\Controllers\admin\DesaController::class);
     Route::resource('fasilitas', \App\Http\Controllers\admin\FasilitasController::class);
+    Route::resource('kegiatan', \App\Http\Controllers\admin\KegiatanController::class);
 });

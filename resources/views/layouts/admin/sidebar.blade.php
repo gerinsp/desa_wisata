@@ -39,6 +39,12 @@
             <span>Fasilitas Desa</span></a>
     </li>
 
+    <li class="nav-item {{ $active === 'kegiatan' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('kegiatan.index') }}">
+            <i class="fas fa-building"></i>
+            <span>Kegiatan Desa</span></a>
+    </li>
+
     @if (auth()->user()->status === 'user' || auth()->user()->status === 'admin')
         <li class="nav-item {{ $active === 'device' ? 'active' : '' }}">
             <a class="nav-link" href="{{ route('device.index') }}">
