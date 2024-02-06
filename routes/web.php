@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\guest\HomeController::class, 'index']);
+Route::get('/desa', function () {
+    return redirect('/');
+});
+Route::get('desa/we', [\App\Http\Controllers\guest\HomeController::class, 'list_desa']);
 
 Auth::routes();
 
