@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/home');
-});
+Route::get('/', [\App\Http\Controllers\guest\HomeController::class, 'index']);
 
 Auth::routes();
 
