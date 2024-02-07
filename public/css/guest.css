@@ -1,6 +1,9 @@
 [x-cloak] {
     display: none !important;
 }
+.gap-y-3 {
+    gap: 12px 0;
+}
 
 .hero {
     height: 100vh;
@@ -36,6 +39,7 @@
     .peta {
         position: absolute;
         right: 0;
+        z-index: 9999;
     }
     .peta iframe {
         width: 50%;

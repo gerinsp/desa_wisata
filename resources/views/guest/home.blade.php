@@ -7,7 +7,7 @@
         <nav class="navbar bg-dark border-body text-white">
             <div class="container">
                 <div class="navbar-brand">
-                    <img src="{{ asset('img/logo-kab-tegal.png') }}" alt="Logo Kabupaten Tegal" width="30" height="24">
+                    <img src="{{ asset('img/logo.png') }}" alt="Logo Kabupaten Tegal" width="30" height="30">
                 </div>
                 <div class="d-flex gap-3">
                     <a href="/" class="btn btn-outline-primary d-flex justify-content-evenly align-items-center gap-2">
@@ -30,9 +30,9 @@
                 </div>
             </div>
         </nav>
-        <div class="d-flex justify-content-center align-items-center h-100 px-2">
+        <div class="d-flex justify-content-center align-items-center px-2">
             <div class="text-white">
-                <img src="{{ asset('img/logo-kab-tegal.png') }}" alt="Logo Kabupaten Tegal" width="65" class="mb-3">
+                <img src="{{ asset('img/logo.png') }}" alt="Logo Kabupaten Tegal" width="120">
                 <h1 class="mb-1 mx-2 text-primary">{{ $title }}</h1>
                 <p class="mb-3 mx-1">Kabupaten Tegal Adalah Solusi Healing Anda</p>
                 <div class="my-5 position-relative" x-data="{
