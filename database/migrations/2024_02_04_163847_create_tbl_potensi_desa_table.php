@@ -16,7 +16,7 @@ class CreateTblPotensiDesaTable extends Migration
         Schema::create('tbl_potensi_desa', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_desa');
-            $table->string('potensi');
+            $table->text('potensi');
             $table->string('path_video')->nullable();
             $table->timestamps();
         });

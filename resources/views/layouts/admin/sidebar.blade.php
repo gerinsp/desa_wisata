@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
 {{--            <i class="fab fa-playstation"></i>--}}
         </div>
-        <div class="sidebar-brand-text mx-3">Desa Wisata</div>
+        <div class="sidebar-brand-text mr-4 my-4"><img width="80px" src="{{ asset('img/logo2.png') }}" alt=""></div>
     </a>
 
     <!-- Divider -->
@@ -29,27 +29,39 @@
 
     <li class="nav-item {{ $active === 'desa' ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('desa.index') }}">
-            <i class="fas fa-building"></i>
-            <span>Data Desa</span></a>
+            <i class="fas fa-home"></i>
+            <span>Data Desa</span>
+        </a>
     </li>
 
     <li class="nav-item {{ $active === 'profil' ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('profil.index') }}">
-            <i class="fas fa-building"></i>
-            <span>Profil Desa</span></a>
+            <i class="fas fa-id-card"></i>
+            <span>Profil Desa</span>
+        </a>
     </li>
 
     <li class="nav-item {{ $active === 'fasilitas' ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('fasilitas.index') }}">
-            <i class="fas fa-building"></i>
-            <span>Data Fasilitas</span></a>
+            <i class="fas fa-hospital"></i>
+            <span>Data Fasilitas</span>
+        </a>
     </li>
 
     <li class="nav-item {{ $active === 'kegiatan' ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('kegiatan.index') }}">
-            <i class="fas fa-building"></i>
-            <span>Data Kegiatan</span></a>
+            <i class="fas fa-calendar"></i>
+            <span>Data Kegiatan</span>
+        </a>
     </li>
+
+    <li class="nav-item {{ $active === 'potensi' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('potensi.index') }}">
+            <i class="fas fa-lightbulb"></i>
+            <span>Data Potensi Desa</span>
+        </a>
+    </li>
+
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

@@ -14,6 +14,6 @@ class ProfilDesa extends Model
 
     public function desa()
     {
-        return $this->hasOne(Desa::class, 'id_desa', 'id');
+        return $this->hasOne(Desa::class, 'id', 'id_desa');
     }
 }

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin.app')
 
 @section('content')
     <!-- Content Row -->
@@ -33,7 +33,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <form method="POST" action="/profile/{{ auth()->user()->id }}">
+                    <form method="POST" action="/admin/profil-user/{{ auth()->user()->id }}">
                         @method('put')
                         @csrf
                         <div class="form-row">
@@ -49,30 +49,24 @@
                                 @enderror
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="status">Status</label>
-                                <select id="status" name="status"
-                                    class="form-control @error('status') is-invalid @enderror">
-                                    @if (old('status', auth()->user()->status) === 'admin')
-                                        <option value="admin" selected>Admin</option>
-                                        <option value="owner">Owner</option>
-                                        <option value="user">User</option>
-                                    @elseif(old('status', auth()->user()->status) === 'owner')
-                                        <option value="admin">Admin</option>
-                                        <option value="owner" selected>Owner</option>
-                                        <option value="user">User</option>
-                                    @else
-                                        <option value="admin">Admin</option>
-                                        <option value="owner">Owner</option>
-                                        <option value="user" selected>User</option>
+                                <label for="role_id">Role</label>
+                                <select id="role_id" name="role_id"
+                                    class="form-control @error('role_id') is-invalid @enderror">
+                                    @if (old('role_id', auth()->user()->role_id) === 1)
+                                        <option value="1" selected>Admin</option>
+                                        <option value="2">Super Admin</option>
+                                    @elseif(old('role_id', auth()->user()->role_id) === 2)
+                                        <option value="1">Admin</option>
+                                        <option value="2" selected>Super Admin</option>
                                     @endif
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                                id="email" value="{{ old('email', auth()->user()->email) }}">
-                            @error('email')
+                            <label for="username">Username</label>
+                            <input type="text" name="username" class="form-control @error('username') is-invalid @enderror"
+                                id="username" value="{{ old('username', auth()->user()->username) }}">
+                            @error('username')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -100,10 +94,10 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <img style="display:block; margin-right:auto;margin-left:auto;" width="200px"
-                        class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                        class="img-profile rounded-circle" src="{{ asset('img/undraw_profile.svg') }}" />
                 </div>
                 <h4 class="text-center">{{ auth()->user()->name }}</h4>
-                <p class="text-center">{{ auth()->user()->status }}</p>
+                <p class="text-center">{{ auth()->user()->username }}</p>
             </div>
         </div>
     </div>

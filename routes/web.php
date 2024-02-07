@@ -26,4 +26,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('desa', \App\Http\Controllers\admin\DesaController::class);
     Route::resource('fasilitas', \App\Http\Controllers\admin\FasilitasController::class);
     Route::resource('kegiatan', \App\Http\Controllers\admin\KegiatanController::class);
+    Route::resource('profil', \App\Http\Controllers\admin\ProfilDesaController::class);
+    Route::resource('potensi', \App\Http\Controllers\admin\PotensiDesaController::class);
+    Route::get('/profil-user', [\App\Http\Controllers\admin\ProfilUserController::class, 'index']);
+    Route::put('/profil-user/{id}', [\App\Http\Controllers\admin\ProfilUserController::class, 'update']);
 });
