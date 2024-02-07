@@ -16,12 +16,15 @@ class HomeController extends Controller
             'desa' => $data
         ]);
     }
-    public function list_desa()
+    public function desa($id)
     {
-        $data = Desa::all();
-        return view('guest.list-desa', [
-            'title' => 'List Desa Wisata Kabupaten Tegal',
-            'desa' => $data
+        $desa = Desa::with(['fasilitas', 'kegiatan', 'potensi', 'profil'])->find($id);
+        if (!$desa) {
+            return abort(404);
+        }
+        return view('guest.desa', [
+            'title' => $desa->nama_desa,
+            'desa' => $desa
         ]);
     }
 }

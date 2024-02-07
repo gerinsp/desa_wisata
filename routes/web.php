@@ -17,7 +17,7 @@ Route::get('/', [\App\Http\Controllers\guest\HomeController::class, 'index']);
 Route::get('/desa', function () {
     return redirect('/');
 });
-Route::get('desa/we', [\App\Http\Controllers\guest\HomeController::class, 'list_desa']);
+Route::get('desa/{id}', [\App\Http\Controllers\guest\HomeController::class, 'desa']);
 
 Auth::routes();
 

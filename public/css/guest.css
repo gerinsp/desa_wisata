@@ -19,3 +19,42 @@
     overflow: hidden;
     background-attachment: fixed;
 }
+.peta iframe {
+    width: 100%;
+}
+.profil-iframe {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .peta {
+        position: absolute;
+        right: 0;
+    }
+    .peta iframe {
+        width: 50%;
+        float: inline-end;
+    }
+    .profil-iframe {
+        width: 50%;
+        margin: auto;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+}
