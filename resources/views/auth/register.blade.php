@@ -23,7 +23,17 @@
 </head>
 
 <body class="bg-gradient-primary">
-
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal"><img width="60px" src="{{ asset('img/logo2.png') }}" alt=""></h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-dark" href="#">Home</a>
+        <a class="p-2 text-dark" href="#">Profil</a>
+        <a class="p-2 text-dark" href="#">Fasilitas</a>
+        <a class="p-2 text-dark" href="#">Potensi</a>
+        <a class="p-2 text-dark" href="#">Kegiatan</a>
+    </nav>
+    <a class="btn btn-outline-primary" href="{{ route('login') }}">Login</a>
+</div>
     <div class="container">
 
         <div class="row justify-content-center">
@@ -53,12 +63,12 @@
                                         @enderror
                                     </div>
                                     <div class="form-group">
-                                        <input id="email" type="email"
-                                            class="form-control form-control-user @error('email') is-invalid @enderror"
-                                            name="email" value="{{ old('email') }}" required autocomplete="email"
-                                            placeholder="Email Address">
+                                        <input id="username" type="text"
+                                            class="form-control form-control-user @error('username') is-invalid @enderror"
+                                            name="username" value="{{ old('username') }}" required autocomplete="username"
+                                            placeholder="Username">
 
-                                        @error('email')
+                                        @error('username')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -88,13 +98,6 @@
                                     </button>
                                 </form>
                                 <hr>
-                                @if (Route::has('password.request'))
-                                    <div class="text-center">
-                                        <a class="small" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    </div>
-                                @endif
                                 <div class="text-center">
                                     <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
                                 </div>
