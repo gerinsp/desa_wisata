@@ -19,11 +19,11 @@ class CreateTblProfilDesaTable extends Migration
             $table->text('deskripsi');
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('gambar1');
-            $table->string('gambar2');
-            $table->string('gambar3');
-            $table->string('gambar4');
-            $table->string('path_video');
+            $table->longText('foto_profil')->nullable();
+            $table->longText('gambar1')->nullable();
+            $table->longText('gambar2')->nullable();
+            $table->longText('gambar3')->nullable();
+            $table->longText('gambar4')->nullable();
             $table->timestamps();
         });
     }

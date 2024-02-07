@@ -33,50 +33,23 @@
             <span>Data Desa</span></a>
     </li>
 
+    <li class="nav-item {{ $active === 'profil' ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('profil.index') }}">
+            <i class="fas fa-building"></i>
+            <span>Profil Desa</span></a>
+    </li>
+
     <li class="nav-item {{ $active === 'fasilitas' ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('fasilitas.index') }}">
             <i class="fas fa-building"></i>
-            <span>Fasilitas Desa</span></a>
+            <span>Data Fasilitas</span></a>
     </li>
 
     <li class="nav-item {{ $active === 'kegiatan' ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('kegiatan.index') }}">
             <i class="fas fa-building"></i>
-            <span>Kegiatan Desa</span></a>
+            <span>Data Kegiatan</span></a>
     </li>
-
-    @if (auth()->user()->status === 'user' || auth()->user()->status === 'admin')
-        <li class="nav-item {{ $active === 'device' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('device.index') }}">
-                <i class="fas fa-tv"></i>
-                <span>Data Perangkat</span></a>
-        </li>
-
-        <li class="nav-item {{ $active === 'transaction' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('transaction.index') }}">
-                <i class="fas fa-shopping-cart"></i>
-                <span>Transaksi</span></a>
-        </li>
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-    @endif
-
-    @if (auth()->user()->status === 'admin' || auth()->user()->status === 'owner')
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Laporan
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-
-
-        <!-- Nav Item - Charts -->
-        <li class="nav-item {{ $active === 'report' ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('report') }}">
-                <i class="fas fa-fw fa-chart-area"></i>
-                <span>Laporan</span></a>
-        </li>
-    @endif
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

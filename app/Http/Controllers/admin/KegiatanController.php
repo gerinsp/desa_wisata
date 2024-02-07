@@ -15,7 +15,7 @@ class KegiatanController extends Controller
         $desa = Desa::all();
         $data = KegiatanDesa::with('desa')->paginate(8);
         return view('admin.kegiatan', [
-            'title' => 'Kegiatan Desa',
+            'title' => 'Data Kegiatan',
             'active' => 'kegiatan',
             'kegiatan' => $data,
             'desa' => $desa

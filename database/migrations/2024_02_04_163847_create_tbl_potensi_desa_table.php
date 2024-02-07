@@ -17,6 +17,7 @@ class CreateTblPotensiDesaTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_desa');
             $table->string('potensi');
+            $table->string('path_video')->nullable();
             $table->timestamps();
         });
     }

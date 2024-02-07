@@ -14,7 +14,7 @@ class FasilitasController extends Controller
         $desa = Desa::all();
         $data = FasilitasDesa::with('desa')->paginate(8);
         return view('admin.fasilitas', [
-            'title' => 'Fasilitas Desa',
+            'title' => 'Data Fasilitas',
             'active' => 'fasilitas',
             'fasilitas' => $data,
             'desa' => $desa
