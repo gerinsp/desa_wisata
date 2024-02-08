@@ -30,14 +30,11 @@
                         d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A32 32 0 0 1 8 14.58a32 32 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10" />
                     <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4m0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                 </svg>
-                <div class="mt-1">Cempaka, Kabupaten Tegal, Jawa Tengah</div>
+                <div class="mt-1">{{ $desa->nama_desa }}, Kabupaten Tegal, Jawa Tengah</div>
             </div>
         </div>
         <div class="col-12 col-md-6 peta">
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15834.108385196101!2d109.05771475969262!3d-7.180531545686707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f91c1cc716295%3A0xbb5fae114078b2e3!2sCempaka%2C%20Kecamatan%20Bumijawa%2C%20Kabupaten%20Tegal%2C%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1707293953583!5m2!1sid!2sid"
-                style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44528.9914268558!2d109.10041815031109!3d-6.868345771690286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fb9df95633e29%3A0xba923dd45f2aac0!2sKota%20Tegal%2C%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1707378538115!5m2!1sid!2sid" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="col-12 mt-3" x-data="{
             active: 'profil',
@@ -64,23 +61,23 @@
                 </li>
             </ul>
             <div class="row mt-2" x-show="active === 'profil'" x-cloak>
-                <img src="{{ asset('img/' . $desa->profil->foto_profil) }}" alt="Dokumentasi Lokasi"
+                <img src="data:image/png;base64,{{ $desa->profil->foto_profil ?? '' }}" alt="Dokumentasi Lokasi"
                     class="foto_profil">
                 <div class="col-12 col-md-8 text-md-center mx-auto mt-3 mb-4">
-                    {{ $desa->profil->deskripsi }}
+                    {!! $desa->profil->deskripsi ?? '' !!}
                 </div>
                 <div class="row m-0 p-0">
                     <div class="col-12 col-sm-6 col-md-3 p-0">
-                        <img src="{{ asset('img/' . $desa->profil->gambar1) }}" alt="Dokumentasi Lokasi" class="w-100">
+                        <img src="data:image/png;base64,{{ $desa->profil->gambar1 ?? '' }}" alt="Dokumentasi Lokasi" class="w-100">
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 p-0">
-                        <img src="{{ asset('img/' . $desa->profil->gambar2) }}" alt="Dokumentasi Lokasi" class="w-100">
+                        <img src="data:image/png;base64,{{ $desa->profil->gambar2 ?? '' }}" alt="Dokumentasi Lokasi" class="w-100">
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 p-0">
-                        <img src="{{ asset('img/' . $desa->profil->gambar3) }}" alt="Dokumentasi Lokasi" class="w-100">
+                        <img src="data:image/png;base64,{{ $desa->profil->gambar3 ?? '' }}" alt="Dokumentasi Lokasi" class="w-100">
                     </div>
                     <div class="col-12 col-sm-6 col-md-3 p-0">
-                        <img src="{{ asset('img/' . $desa->profil->gambar4) }}" alt="Dokumentasi Lokasi" class="w-100">
+                        <img src="data:image/png;base64,{{ $desa->profil->gambar4 ?? '' }}" alt="Dokumentasi Lokasi" class="w-100">
                     </div>
                 </div>
             </div>
@@ -100,12 +97,12 @@
                 </div>
             </div>
             <div class="row mt-2" x-show="active === 'potensi'" x-cloak>
-                <iframe class="profil-iframe" src="{{ $desa->potensi->path_video }}" title="YouTube video player"
+                <iframe class="profil-iframe" src="https://www.youtube.com/embed/{{ $desa->potensi->path_video ?? '' }}" title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowfullscreen></iframe>
                 <div class="col-12 col-md-8 text-md-center mx-auto mt-3 mb-4">
-                    {{ $desa->potensi->potensi }}
+                    {!! $desa->potensi->potensi ?? '' !!}
                 </div>
             </div>
             <div class="mt-2" x-show="active === 'kegiatan'" x-data="fullCalendar">

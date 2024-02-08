@@ -17,8 +17,7 @@ class CreateTblProfilDesaTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_desa');
             $table->text('deskripsi');
-            $table->string('latitude');
-            $table->string('longitude');
+            $table->text('maps');
             $table->longText('foto_profil')->nullable();
             $table->longText('gambar1')->nullable();
             $table->longText('gambar2')->nullable();

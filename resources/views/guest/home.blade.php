@@ -10,7 +10,7 @@
                     <img src="{{ asset('img/logo.png') }}" alt="Logo Kabupaten Tegal" width="30" height="30">
                 </div>
                 <div class="d-flex gap-3">
-                    <a href="/" class="btn btn-outline-primary d-flex justify-content-evenly align-items-center gap-2">
+                    <a href="{{ route('login') }}" class="btn btn-outline-primary d-flex justify-content-evenly align-items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -20,7 +20,7 @@
                         </svg>
                         <div>Login</div>
                     </a>
-                    <a href="/" class="btn btn-primary d-flex justify-content-evenly align-items-center gap-2">
+                    <a href="{{ route('register') }}" class="btn btn-primary d-flex justify-content-evenly align-items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-person-fill" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />

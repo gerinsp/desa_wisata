@@ -68,10 +68,10 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <video width="100%" controls>
-                                                <source src="{{ asset('storage/'.$value->path_video) }}" type="video/mp4">
-                                                Your browser does not support the video tag.
-                                            </video>
+                                            <iframe width="100%" height="300px;" class="profil-iframe" src="https://www.youtube.com/embed/{{ $value->path_video ?? '' }}" title="YouTube video player"
+                                                    frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    allowfullscreen></iframe>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

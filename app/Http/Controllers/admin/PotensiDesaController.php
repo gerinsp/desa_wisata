@@ -34,15 +34,15 @@ class PotensiDesaController extends Controller
         $request->validate([
            'id_desa' => 'required',
            'potensi'  => 'required',
-           'video' => 'required|mimes:mp4,mov,avi,wmv'
+           'video' => 'required'
         ]);
 
-        $video_path = $request->file('video')->store('video', 'public');
+        $video = $this->extractVideoIdFromShortUrl($request->video);
 
         $potensi = new PotensiDesa();
         $potensi->id_desa = $request->id_desa;
         $potensi->potensi = $request->potensi;
-        $potensi->path_video = $video_path;
+        $potensi->path_video = $video;
 
         $potensi->save();
 
@@ -74,14 +74,12 @@ class PotensiDesaController extends Controller
             'video' => ''
         ]);
 
+        $video = $this->extractVideoIdFromShortUrl($request->video);
+
         $potensi = PotensiDesa::findOrFail($id);
         $potensi->id_desa = $request->id_desa;
         $potensi->potensi = $request->potensi;
-
-        if ($request->file('video')) {
-            $video_path = $request->file('video')->store('video', 'public');
-            $potensi->path_video = $video_path;
-        }
+        $potensi->path_video = $video;
 
         $potensi->save();
 
@@ -98,4 +96,12 @@ class PotensiDesaController extends Controller
 
         return redirect('admin/potensi')->with('gagal', 'Id tidak ditemukan.');
     }
+
+    function extractVideoIdFromShortUrl($shortUrl)
+    {
+        $videoId = substr($shortUrl, strrpos($shortUrl, '/') + 1);
+        return $videoId;
+    }
+
+
 }

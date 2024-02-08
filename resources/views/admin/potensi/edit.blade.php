@@ -31,14 +31,9 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <video id="videoPreview" width="400" controls style="display:block;">
-                            <source src="{{ asset('storage/'.$potensi->path_video) }}" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="mb-3">
-                        <label for="video" class="form-label ">Video</label>
-                        <input type="file" class="form-control @error('video') is-invalid @enderror" id="video"
-                            name="video" autofocus value="{{ old('video') }}">
+                        <label for="video" class="form-label ">Link Video</label>
+                        <input type="text" class="form-control @error('video') is-invalid @enderror" id="video"
+                            name="video" autofocus value="{{ old('video', 'https://youtu.be/' . $potensi->path_video) }}">
                         @error('video')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -65,20 +60,6 @@
     <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="{{ asset('js/summernote-lite.min.js') }}"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const videoInput = document.getElementById('video');
-            const videoPreview = document.getElementById('videoPreview');
-
-            videoInput.addEventListener('change', function (event) {
-                const file = event.target.files[0];
-
-                if (file) {
-                    const videoURL = URL.createObjectURL(file);
-                    videoPreview.src = videoURL;
-                    videoPreview.style.display = 'block';
-                }
-            });
-        });
 
         $('#potensi').summernote({
             placeholder: '',

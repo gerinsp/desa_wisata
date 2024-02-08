@@ -40,9 +40,10 @@ class ProfilDesaController extends Controller
             'gambar2' => 'required|image',
             'gambar3' => 'required|image',
             'gambar4' => 'required|image',
-            'latitude' => 'required',
-            'longitude' => 'required'
+            'maps' => 'required'
         ]);
+
+        $maps = preg_replace('/[?&]?(width|height)=\d+/', '', $request->maps);
 
         $fotoProfil = $request->file('foto_profil');
         $fotoProfilBase64 = base64_encode(file_get_contents($fotoProfil->path()));
@@ -67,8 +68,7 @@ class ProfilDesaController extends Controller
         $desa->gambar2 = $gambar2Base64;
         $desa->gambar3 = $gambar3Base64;
         $desa->gambar4 = $gambar4Base64;
-        $desa->latitude = $request->latitude;
-        $desa->longitude = $request->longitude;
+        $desa->maps = $maps;
 
         $desa->save();
 
@@ -102,12 +102,13 @@ class ProfilDesaController extends Controller
             'gambar2' => '',
             'gambar3' => '',
             'gambar4' => '',
-            'latitude' => 'required',
-            'longitude' => 'required'
+            'maps' => 'required',
         ]);
         $desa = ProfilDesa::findOrFail($id);
         $desa->id_desa = $request->id_desa;
         $desa->deskripsi = $request->deskripsi;
+
+        $maps = preg_replace('/[?&]?(width|height)=\d+/', '', $request->maps);
 
         $fotoProfil = $request->file('foto_profil');
         if ($fotoProfil) {
@@ -135,8 +136,7 @@ class ProfilDesaController extends Controller
             $desa->gambar4 = $gambar4Base64;
         }
 
-        $desa->latitude = $request->latitude;
-        $desa->longitude = $request->longitude;
+        $desa->maps = $maps;
 
         $desa->save();
 

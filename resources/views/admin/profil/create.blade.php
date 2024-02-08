@@ -89,25 +89,14 @@
                             </div>
                         </div>
                         <div class="col-md-7">
-                            <div class="row mb-3">
-                                <div class="col-md-6">
-                                    <label for="latitude">Latitude</label>
-                                    <input type="text" class="form-control" id="latitude" name="latitude">
-                                    @error('latitude')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
+                            <div class="mb-3">
+                                <label for="maps">Link Embed Maps</label>
+                                <input type="text" class="form-control" id="maps" name="maps">
+                                @error('maps')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
                                 </div>
-                                <div class="col-md-6">
-                                    <label for="longitude">Longitude</label>
-                                    <input type="text" class="form-control" id="longitude" name="longitude">
-                                    @error('longitude')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                </div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="deskripsi" class="form-label ">Deskripsi</label>

@@ -40,7 +40,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Nama Desa</th>
                     <th scope="col">Deskripsi</th>
-                    <th scope="col">Lat, Long</th>
+                    <th scope="col">Maps</th>
                     <th scope="col">Foto</th>
                     <th scope="col"></th>
                 </tr>
@@ -52,7 +52,32 @@
                             {{ ($profil->currentpage() - 1) * $profil->perpage() + $loop->index + 1 }}</th>
                         <td>{{ ucwords(strtolower($value->desa->nama_desa)) }}</td>
                         <td>{!! $value->deskripsi !!}</td>
-                        <td>{{ $value->latitude.','.$value->longitude }}</td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-maps-{{ $value->id }}">
+                                Lihat Maps
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="modal-maps-{{ $value->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" >
+                                    <div class="modal-content" style="width: 635px !important;">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Maps</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {!! $value->maps !!}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                         <td>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-{{ $value->id }}">
