@@ -29,6 +29,9 @@
     width: 100%;
     aspect-ratio: 16/9;
 }
+img.foto_profil {
+    width: 100%;
+}
 
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
@@ -48,6 +51,10 @@
     .profil-iframe {
         width: 50%;
         margin: auto;
+    }
+    img.foto_profil {
+        width: 50%;
+        margin: 0 auto;
     }
 }
 

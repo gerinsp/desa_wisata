@@ -1,5 +1,23 @@
 @extends('layouts.guest.app')
 
+@push('head')
+<script src="{{ asset('js/fullcalendar.js') }}"></script>
+<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.data('fullCalendar', () => ({
+            init() {
+                var calendarEl = document.getElementById('calendar');
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: {!! $kegiatan !!},
+                });
+                calendar.render();
+            }
+        }))
+    })
+</script>
+@endpush
+
 @section('content')
 <div class="container position-relative mt-3">
     <div class="row">
@@ -22,7 +40,7 @@
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <div class="col-12 mt-3" x-data="{
-            active: 'fasilitas',
+            active: 'profil',
             setActive(param){
                 this.active = param
             }
@@ -45,58 +63,55 @@
                         @click="setActive('kegiatan')">Kegiatan</button>
                 </li>
             </ul>
-            <template x-if="active === 'profil'">
-                <div class="row mt-2">
-                    <iframe class="profil-iframe" src="{{ $desa->profil->path_video }}" title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen></iframe>
-                    <div class="col-12 col-md-8 text-md-center mx-auto mt-3 mb-4">
-                        {{ $desa->profil->deskripsi }}
+            <div class="row mt-2" x-show="active === 'profil'" x-cloak>
+                <img src="{{ asset('img/' . $desa->profil->foto_profil) }}" alt="Dokumentasi Lokasi"
+                    class="foto_profil">
+                <div class="col-12 col-md-8 text-md-center mx-auto mt-3 mb-4">
+                    {{ $desa->profil->deskripsi }}
+                </div>
+                <div class="row m-0 p-0">
+                    <div class="col-12 col-sm-6 col-md-3 p-0">
+                        <img src="{{ asset('img/' . $desa->profil->gambar1) }}" alt="Dokumentasi Lokasi" class="w-100">
                     </div>
-                    <div class="row m-0 p-0">
-                        <div class="col-12 col-sm-6 col-md-3 p-0">
-                            <img src="{{ asset('img/' . $desa->profil->gambar1) }}" alt="Dokumentasi Lokasi"
-                                class="w-100">
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 p-0">
-                            <img src="{{ asset('img/' . $desa->profil->gambar2) }}" alt="Dokumentasi Lokasi"
-                                class="w-100">
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 p-0">
-                            <img src="{{ asset('img/' . $desa->profil->gambar3) }}" alt="Dokumentasi Lokasi"
-                                class="w-100">
-                        </div>
-                        <div class="col-12 col-sm-6 col-md-3 p-0">
-                            <img src="{{ asset('img/' . $desa->profil->gambar4) }}" alt="Dokumentasi Lokasi"
-                                class="w-100">
-                        </div>
+                    <div class="col-12 col-sm-6 col-md-3 p-0">
+                        <img src="{{ asset('img/' . $desa->profil->gambar2) }}" alt="Dokumentasi Lokasi" class="w-100">
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 p-0">
+                        <img src="{{ asset('img/' . $desa->profil->gambar3) }}" alt="Dokumentasi Lokasi" class="w-100">
+                    </div>
+                    <div class="col-12 col-sm-6 col-md-3 p-0">
+                        <img src="{{ asset('img/' . $desa->profil->gambar4) }}" alt="Dokumentasi Lokasi" class="w-100">
                     </div>
                 </div>
-            </template>
-            <template x-if="active === 'fasilitas'">
-                <div class="mt-2">
-                    <h2>Fasilitas</h2>
-                    <div class="row gap-y-3">
-                        @foreach ($desa->fasilitas as $item)
-                        <div class="col-12 col-sm-6 col-md-4 d-flex align-items-center gap-2">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107"
-                                class="bi bi-check-square-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
-                            </svg>
-                            <div>{{ $item->fasilitas }}</div>
-                        </div>
-                        @endforeach
+            </div>
+            <div class="mt-2" x-show="active === 'fasilitas'" x-cloak>
+                <h2>Fasilitas</h2>
+                <div class="row gap-y-3">
+                    @foreach ($desa->fasilitas as $item)
+                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffc107"
+                            class="bi bi-check-square-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm10.03 4.97a.75.75 0 0 1 .011 1.05l-3.992 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.75.75 0 0 1 1.08-.022z" />
+                        </svg>
+                        <div>{{ $item->fasilitas }}</div>
                     </div>
+                    @endforeach
                 </div>
-            </template>
-            <template x-if="active === 'potensi'">
-                <div>potensi...</div>
-            </template>
-            <template x-if="active === 'kegiatan'">
-                <div>kegiatan...</div>
-            </template>
+            </div>
+            <div class="row mt-2" x-show="active === 'potensi'" x-cloak>
+                <iframe class="profil-iframe" src="{{ $desa->potensi->path_video }}" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen></iframe>
+                <div class="col-12 col-md-8 text-md-center mx-auto mt-3 mb-4">
+                    {{ $desa->potensi->potensi }}
+                </div>
+            </div>
+            <div class="mt-2" x-show="active === 'kegiatan'" x-data="fullCalendar">
+                <h2>Kegiatan</h2>
+                <div class="col-md-8 mx-auto mb-3" id="calendar" x-ignore></div>
+            </div>
         </div>
     </div>
 </div>
