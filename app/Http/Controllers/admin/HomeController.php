@@ -22,22 +22,15 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
     public function index()
     {
-        $desa = Desa::count();
-        $fasilitas = FasilitasDesa::count();
-        $user = User::count();
+        $user = User::where('role_id', 2)->count();
+        $admin = User::where('role_id', 1)->count();
         return view('admin.home', [
             'title' => 'Dashboard',
             'active' => 'dashboard',
-            'desa' => $desa,
-            'fasilitas' => $fasilitas,
-            'user' => $user
+            'user' => $user,
+            'admin' => $admin
         ]);
     }
 }
