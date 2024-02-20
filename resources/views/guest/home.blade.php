@@ -3,8 +3,8 @@
 @section('content')
 <!-- Hero -->
 <div class="p-5 text-center bg-image rounded-3 hero" style="background-image: url('{{ asset('img/hero.jpg') }}');">
-    <div class="mask" style="background-color: rgba(0, 0, 0, 0.6);">
-        <nav class="navbar bg-dark border-body text-white">
+    <div class="mask" style="background-color: rgba(0, 0, 0, 0.1);">
+        <nav class="navbar bg-white border-body text-white">
             <div class="container">
                 <div class="navbar-brand">
                     <img src="{{ asset('img/logo.png') }}" alt="Logo Kabupaten Tegal" width="30" height="30">

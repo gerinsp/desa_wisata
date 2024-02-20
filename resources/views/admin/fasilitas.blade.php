@@ -67,9 +67,14 @@
 
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Fasilitas</label>
-                        <input type="text" class="form-control" id="nama_fasilitas" aria-describedby="emailHelp" required>
+                    <div id="input-fasilitas">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Fasilitas</label>
+                            <div style="display: flex;align-items: center;gap: 10px;">
+                                <input type="text" class="form-control nama_fasilitas" id="nama_fasilitas" aria-describedby="emailHelp" required>
+                                <a href="#" onclick="addInputFasilitas()" class="btn btn-sm btn-primary">+</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -86,17 +91,45 @@
         const btnSubmit = document.getElementById('btn-submit')
         const selectDesa = document.getElementById('id_desa')
 
+        function addInputFasilitas() {
+            $('#input-fasilitas').append(`
+                <div class="form-group">
+                   <div style="display: flex;align-items: center;gap: 10px;">
+                       <input type="text" class="form-control nama_fasilitas" id="nama_fasilitas" aria-describedby="emailHelp" required>
+                       <a href="#" onclick="dropInputFasilitas(this)" class="btn btn-sm btn-danger">-</a>
+                   </div>
+                </div>
+            `)
+        }
+
+        function dropInputFasilitas(e) {
+            $(e).closest('.form-group').remove();
+        }
+
         const desa = {!! json_encode($desa) !!};
 
         let url = ''
         let method = ''
+        let input;
         function tambahData() {
+            input = 1
+            $('#input-fasilitas').html('')
             $('#exampleModalLabel').text('Tambah Data')
             $('#btn-submit').text('Simpan')
             url = '{{ route('fasilitas.store') }}'
             method = 'POST'
-            $('#nama_fasilitas').val('')
+            $('.nama_fasilitas').val('')
             selectDesa.innerHTML = '';
+
+            $('#input-fasilitas').html(`
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Fasilitas</label>
+                    <div style="display: flex;align-items: center;gap: 10px;">
+                        <input type="text" class="form-control nama_fasilitas" id="nama_fasilitas" aria-describedby="emailHelp" required>
+                        <a href="#" onclick="addInputFasilitas()" class="btn btn-sm btn-primary">+</a>
+                    </div>
+                </div>
+            `)
 
             //option value
             desa.forEach(function(value) {
@@ -107,10 +140,19 @@
             });
         }
         function updateData(id) {
+            input = 2
+            $('#input-fasilitas').html('')
             $('#exampleModalLabel').text('Edit Data')
             $('#btn-submit').text('Ubah')
             url = `/admin/fasilitas/${id}`
             method = 'PUT'
+
+            $('#input-fasilitas').html(`
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Fasilitas</label>
+                    <input type="text" class="form-control nama_fasilitas" id="nama_fasilitas" aria-describedby="emailHelp" required>
+                </div>
+            `)
 
             $.ajax({
                 url: `/admin/fasilitas/${id}`,
@@ -165,6 +207,14 @@
 
         btnSubmit.addEventListener('click', function (e) {
             e.preventDefault()
+
+            let fasilitas = []
+            $('.nama_fasilitas').each(function(index, element) {
+
+                var nilaiFasilitas = $(element).val();
+                fasilitas.push(nilaiFasilitas)
+            });
+
             $.ajax({
                 url: url,
                 method: method,
@@ -173,7 +223,7 @@
                 },
                 data: {
                     id_desa: $('#id_desa').val(),
-                    fasilitas: $('#nama_fasilitas').val()
+                    fasilitas: input == 1 ? fasilitas : $('#nama_fasilitas').val()
                 },
                 success: function (res) {
                     if (res.status == 'OK') {

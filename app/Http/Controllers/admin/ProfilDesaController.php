@@ -43,7 +43,7 @@ class ProfilDesaController extends Controller
             'maps' => 'required'
         ]);
 
-        $maps = preg_replace('/[?&]?(width|height)=\d+/', '', $request->maps);
+        $maps = $request->maps;
 
         $fotoProfil = $request->file('foto_profil');
         $fotoProfilBase64 = base64_encode(file_get_contents($fotoProfil->path()));
