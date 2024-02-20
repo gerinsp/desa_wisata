@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6 peta">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d44528.9914268558!2d109.10041815031109!3d-6.868345771690286!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fb9df95633e29%3A0xba923dd45f2aac0!2sKota%20Tegal%2C%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1707378538115!5m2!1sid!2sid" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            {!! str_replace(['width="600"', 'height="450"'], '',$desa->profil->maps) !!}
         </div>
         <div class="col-12 mt-3" x-data="{
             active: 'profil',

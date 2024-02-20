@@ -23,12 +23,14 @@ class FasilitasController extends Controller
 
     public function store(Request $request)
     {
-        $data = [
-            'id_desa' => $request->id_desa,
-            'fasilitas' => $request->fasilitas
-        ];
+        $fasilitas = $request->fasilitas;
 
-        FasilitasDesa::create($data);
+        foreach ($fasilitas as $value) {
+            FasilitasDesa::create([
+                'id_desa' => $request->id_desa,
+                'fasilitas' => $value ?? ''
+            ]);
+        }
 
         return response()->json([
             'status' => 'OK',
